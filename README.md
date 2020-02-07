@@ -11,8 +11,8 @@ Inspired by https://www.thingiverse.com/thing:1915076.
 ## Installation
 Follow instructions at https://www.thingiverse.com/thing:1915076 or below to get Cura running with Da Vinci Jr. 
 
-1. copy "davinci_jr_platform.stl" to /Applications/Cura.app/Contents/Resources/resources/meshes/davinci_jr_platform.stl
-2. copy "davinci_jr.def.json" to /Applications/Cura.app/Contents/Resources/resources/definitions/davinci_jr.def.json
+1. move "davinci_jr_platform.stl" to /Applications/Cura.app/Contents/Resources/resources/meshes/davinci_jr_platform.stl
+2. move "davinci_jr.def.json" to /Applications/Cura.app/Contents/Resources/resources/definitions/davinci_jr.def.json
 
 Then install this plug-in by following the steps:
 
