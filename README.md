@@ -15,8 +15,8 @@ Then install this plug-in by following the steps:
 
 1. Download the .zip file from Github: https://github.com/gkotas/XYZWriter/archive/master.zip
 2. Extract the contents of the .zip archive (including directory) to Cura's plug-in directory in your installation 
-* Windows `C:\Program Files\Cura\plugins`
-* Mac OS X `/Applications/Ultimaker\ Cura.app/Contents/Resources/plugins/plugins`
+* **Windows** `C:\Program Files\Cura\plugins`
+* **Mac OS X** `/Applications/Ultimaker\ Cura.app/Contents/Resources/plugins/plugins`
 3. (Re)start Cura.
 
 ## Requirements
