@@ -23,5 +23,5 @@ Then install this plug-in by following the steps:
 3. (Re)start Cura.
 
 ## Requirements
-You should download and install threedub package to run this plugin.
+You should download and install **threedub** package to run this plugin.
 https://gitlab.com/anthem/py-threedub
