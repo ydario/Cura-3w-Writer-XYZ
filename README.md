@@ -16,7 +16,7 @@ Follow instructions at https://www.thingiverse.com/thing:1915076 or below to get
 
 Then install this plug-in by following the steps:
 
-1. Download the .zip file from Github: https://github.com/gkotas/XYZWriter/archive/master.zip
+1. Download the .zip file from Github: https://github.com/wolfiems/Cura-3w-Writer-XYZ/releases/download/v1.0.0/Cura-3w-Writer-XYZ.zip
 2. Extract the contents of the .zip archive (including directory) to Cura's plug-in directory in your installation 
 * **Windows** `C:\Program Files\Cura\plugins`
 * **Mac OS X** `/Applications/Ultimaker\ Cura.app/Contents/Resources/plugins/plugins`
