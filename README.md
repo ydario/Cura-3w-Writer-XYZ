@@ -2,9 +2,9 @@
 Cura Plugin to save directly to 3w format for XYZ Da Vinc Jr. 1.0 machines.
 
 ## Support
-Tested on the Da Vinci Jr. with Cura 2.3.1. `by gkotas`
+Tested on the Da Vinci Jr. with Cura 2.3.1 `by gkotas`
 
-Tested on the Da Vinci Jr. 1.0 Wifi with Cura 4.4.1. `by wolfiem` 
+Tested on the Da Vinci Jr. 1.0 Wifi with Cura 4.4.1 `by wolfiem` 
 
 Inspired by https://www.thingiverse.com/thing:1915076.
 
