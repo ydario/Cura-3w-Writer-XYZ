@@ -1,5 +1,5 @@
 # XYZWriter
-Cura Plugin to save directly to 3w format for XYZPrinting machines.
+Cura Plugin to save directly to 3w format for XYZ Da Vinc Jr. 1.0 machines.
 
 ## Support
 Tested on the Da Vinci Jr. with Cura 2.3.1. `by gkotas`
