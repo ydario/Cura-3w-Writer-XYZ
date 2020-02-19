@@ -8,8 +8,10 @@ Tested on the Da Vinci Jr. 1.0 Wifi with Cura 4.4.1 `by wolfiem`
 
 Inspired by https://www.thingiverse.com/thing:1915076.
 
+Download files: https://github.com/wolfiems/Cura-3w-Writer-XYZ/releases
+
 ## Installation
-Follow instructions at https://www.thingiverse.com/thing:1915076 or below to get Cura running with Da Vinci Jr. 
+Follow instructions below to get Cura running with Da Vinci Jr. 
 
 1. **move** "davinci_jr_platform.stl" to /Applications/Cura.app/Contents/Resources/resources/meshes/davinci_jr_platform.stl
 2. **move** "davinci_jr.def.json" to /Applications/Cura.app/Contents/Resources/resources/definitions/davinci_jr.def.json
