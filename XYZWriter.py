@@ -3,11 +3,13 @@
 
 import io
 import subprocess
+import tempfile
 import os
 
 from UM.Mesh.MeshWriter import MeshWriter
 from UM.Logger import Logger
 from UM.Application import Application
+import UM.PluginRegistry  # To get the g-code writer plug-in to obtain the g-code for us.
 import UM.Platform
 
 class XYZWriter(MeshWriter):
@@ -24,64 +26,39 @@ class XYZWriter(MeshWriter):
         Output: Success or Failure
         """
         # Get the g-code.
-        scene = Application.getInstance().getController().getScene()
-        gcode_list = getattr(scene, "gcode_list")
-        if not gcode_list:
-            return False
-
-        # Find an unused file name to temporarily write the g-code to.
-        file_name = stream.name
-        if not file_name: #Not a file stream.
-            Logger.log("e", "XYZ writer can only write to local files.")
-            return False
-        # Save the tempfile next to the real output file.
-        file_directory = os.path.dirname(os.path.realpath(file_name))
-        i = 0
-        temp_file = os.path.join(file_directory, "output" + str(i) + ".gcode")
-        while os.path.isfile(temp_file):
-            i += 1
-            temp_file = os.path.join(file_directory, "output" + str(i) + ".gcode")
-
-        # Write the g-code to the temporary file.
         try:
-            with open(temp_file, "w", -1, "utf-8") as f:
-                for gcode in gcode_list:
-                    f.write(gcode)
-        except:
-            Logger.log("e", "Error writing temporary g-code file %s", temp_file)
-            _removeTemporary(temp_file)
-            return False
+                stringio = io.StringIO()
+                UM.PluginRegistry.PluginRegistry.getInstance().getPluginObject("GCodeWriter").write(stringio, None)
+                stringio.seek(0)
+                gcode_data = stringio.read()
+                temp_gcode = tempfile.NamedTemporaryFile("w", delete=False)
+                temp_gcode.write(gcode_data)
+                temp_gcode.close()
+        except EnvironmentError as e:
+                if temp_gcode:
+                        Logger.log("e", "Error writing temporary g-code file {file_name}: {error_msg}".format(file_name=temp_gcode.name, error_msg=str(e)))
+                        os.remove(temp_gcode.name)
+                else:  # The NamedTemporaryFile constructor failed.
+                        Logger.log("e", "Error creating temporary g-code file: {error_msg}".format(error_msg=str(e)))
+                return False
 
         # Check if threedub is callable
         try:
             subprocess.check_output(['threedub', '-h'])
         except Exception as e:
             Logger.log("e", "threedub could not be called: %s", str(e))
-            _removeTemporary(temp_file)
+            os.remove(temp_gcode.name)
             return False
 
         # Call the converter application to convert it to 3w.
-        cmd = ['threedub', temp_file, file_name]
+        cmd = ['threedub', temp_gcode.name, stream.name]
         try:
             subprocess.check_output(cmd)
         except Exception as e:
             Logger.log("e", "System call to threedub failed: %s", str(e))
-            _removeTemporary(temp_file)
+            os.remove(temp_gcode.name)
             return False
 
         # Clean Up
-        _removeTemporary(temp_file)
+        os.remove(temp_gcode.name)
         return True
-
-
-def _removeTemporary(temp_file):
-    """
-    Removes the temporary g-code file that is an intermediary result.
-
-    Inputs: temp_file - The URI of the temporary file.
-    Output: None
-    """
-    try:
-        os.remove(temp_file)
-    except:
-        Logger.log("w", "Couldn't remove temporary file %s", temp_file)
